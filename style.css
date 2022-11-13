@@ -1,0 +1,65 @@
+body ,html {
+    background-color: #3876c9;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+}
+
+.card_1 {
+    width: 20rem;
+    position: absolute;
+    top: 0;
+    left: 8vw;
+    border-radius: 0 !important;
+    bottom: 0;
+    z-index: 1;
+    background: rgba( 255, 255, 255, 0.45 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 17.5px );
+    -webkit-backdrop-filter: blur( 17.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.card_2 {
+    width: 60rem;
+    height: 30rem;
+    position: absolute;
+    top: 0;
+    left: 20vw;
+    bottom: 0;
+    margin: auto;
+    background: rgba( 255, 255, 255, 0.2 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13px );
+    -webkit-backdrop-filter: blur( 13px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: 100;
+}
+
+h2 {
+    font-weight: 300;
+}
+
+h5 {
+    font-weight: 300;
+}
+
+.txt_number {
+    font-size: 40px;
+    font-weight: 200;
+}
+
+.txt_mensualidad {
+    font-size: 40px;
+}
+
+.txt_mensualidad_2 {
+    font-size: 25px;
+}
