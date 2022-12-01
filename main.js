@@ -7,9 +7,9 @@ const monto = document.getElementById('monto');
 const total = document.getElementById('total');
 const meses = document.getElementById('meses');
 
-const historial_prestamos = [];
+const cont_tabla = document.getElementById('contenido_tabla_historial');
 
-console.log(monto);
+const historial_prestamos = [];
 
 const tasa = 0.01;
 
@@ -19,7 +19,7 @@ btn_calcular.addEventListener('click', () => {
 
 const obtenerMensualidades = () => {
     const mensualidades = tasa * input_monto.value / (1 - (1 + tasa) ** - meses.value);
-    obtenerTotal(mensualidades); 
+    obtenerTotal(mensualidades);
 }
 
 const obtenerTotal = (mensualidades) => {
@@ -41,16 +41,47 @@ const obtenerTotal = (mensualidades) => {
 const pintarPrestamo = (prestamo) => {
 
     console.log(prestamo.mensualidades);
-    mensualidad.innerText = `$${prestamo.mensualidades}`;
-    cantidad_interes.innerText = `${prestamo.intereses}`;
+    mensualidad.innerText = `$${Math.round(prestamo.mensualidades)}`;
+    cantidad_interes.innerText = `$${Math.round(prestamo.intereses)}`;
     monto.innerText = `$${prestamo.monto}`;
     total.innerText = `$${prestamo.totalPrestamo}`;
 
-  };
+};
 
-  const guardarLocalStorage = (prestamo) => {
-    
+const guardarLocalStorage = (prestamo) => {
+
     historial_prestamos.push(prestamo);
 
     localStorage.setItem('historial', JSON.stringify(historial_prestamos));
-  }
+
+    pintarStorageDOM();
+}
+
+const pintarStorageDOM = () => {
+
+    const data = JSON.parse(localStorage.getItem('historial'));
+    let contenedor = '';
+
+    let key = 1;
+
+    console.log(data);
+
+    data.forEach(element => {
+
+        contenedor += `<tr>
+                        <th>${key}</th>
+                        <td>${element.monto}</td>
+                        <td>${meses.value}</td>
+                        <td>${Math.round(element.intereses)}</td>
+                        <td>${Math.round(element.mensualidades)}</td>
+                        <td>${element.totalPrestamo}</td>
+                    </tr>`;       
+
+        cont_tabla.innerHTML = contenedor;
+        
+        key++;
+
+        input_monto.value = '';
+        meses.value = '';
+    });        
+}
