@@ -100,3 +100,12 @@ h5 {
     height: 300px;
     overflow: auto;
 }
+
+.bi-currency-exchange {
+    font-size: 30px;
+}
+
+.moneyChange {
+    font-size: 18px;
+    font-weight: 700;
+}

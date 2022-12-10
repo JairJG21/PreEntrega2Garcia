@@ -19,7 +19,17 @@ btn_calcular.addEventListener('click', () => {
 
 const obtenerMensualidades = () => {
     const mensualidades = tasa * input_monto.value / (1 - (1 + tasa) ** - meses.value);
-    obtenerTotal(mensualidades);
+
+    if (mensualidades && meses.value == null) {
+        obtenerTotal(mensualidades);
+    } else {
+        Swal.fire({
+            icon: 'info',
+            title: 'No ingresaste datos',
+            text: 'porfavor ingresa los datos necesarios',
+            confirmButtonText: 'Aceptar',
+        })
+    }
 }
 
 const obtenerTotal = (mensualidades) => {
@@ -75,13 +85,32 @@ const pintarStorageDOM = () => {
                         <td>${Math.round(element.intereses)}</td>
                         <td>${Math.round(element.mensualidades)}</td>
                         <td>${element.totalPrestamo}</td>
-                    </tr>`;       
+                    </tr>`;
 
         cont_tabla.innerHTML = contenedor;
-        
+
         key++;
 
         input_monto.value = '';
         meses.value = '';
-    });        
+    });
 }
+
+const mxn = document.getElementById('MXN');
+const usd = document.getElementById('USD');
+const host = 'api.frankfurter.app';
+
+fetch(`https://${host}/latest?amount=1&from=USD&to=MXN`)
+    .then(resp => resp.json())
+    .then((data) => {
+        mxn.innerText = data.rates.MXN;
+        console.log(data);
+    });
+
+
+fetch(`https://${host}/latest?amount=1&from=MXN&to=USD`)
+    .then(resp => resp.json())
+    .then((data) => {
+        usd.innerText = data.rates.USD;
+        console.log(data);
+    });
